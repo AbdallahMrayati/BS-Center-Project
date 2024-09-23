@@ -1,0 +1,28 @@
+.section-title {
+  margin-bottom: 56px !important;
+  h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  p {
+    color: #4d4d4d;
+    font-weight: 500;
+  }
+}
+.courses-section.city {
+  margin-top: 0 !important;
+}
+@media screen and (max-width: 768px) {
+  .section-title {
+    margin-bottom: 40px !important;
+    h2 {
+      font-size: 28px;
+    }
+  }
+  .courses-section {
+    .courses-section-head {
+      padding-top: 0 !important;
+    }
+  }
+}

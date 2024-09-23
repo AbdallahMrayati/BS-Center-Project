@@ -1,0 +1,153 @@
+.sitemap {
+  padding-block: 56px;
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+  .site-details {
+    display: flex;
+    flex-direction: column;
+    gap: 94px;
+    max-width: 936px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  h1 {
+    font-size: 64px;
+    font-weight: 600;
+  }
+}
+.sitemap-items-top {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 56px;
+  h2 {
+    font-size: 48px;
+    font-weight: 600;
+    margin-left: 40px;
+  }
+  .sitemap-lists {
+    display: flex;
+    justify-content: space-between;
+    max-width: 840px;
+    flex-wrap: wrap;
+    margin-left: calc(50px + 72px);
+    gap: 24px;
+    ul {
+      list-style: disc;
+      font-size: 18px;
+      color: #00000081;
+      font-weight: 500;
+      li {
+        line-height: 28px;
+        margin-bottom: 4px;
+      }
+    }
+  }
+  &::before {
+    position: absolute;
+    content: "";
+    background-color: #ebf5ff;
+    width: 72px;
+    height: 100%;
+    z-index: -1;
+  }
+}
+
+.sitemap-items-center {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 56px;
+  h2 {
+    font-size: 48px;
+    font-weight: 600;
+    margin-left: 40px;
+  }
+  .sitemap-lists {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 56px;
+    max-width: 840px;
+    margin-left: calc(50px + 72px);
+    ul {
+      list-style: disc;
+      font-size: 18px;
+      color: #00000081;
+      font-weight: 500;
+      li {
+        line-height: 28px;
+        margin-bottom: 4px;
+      }
+      .list-title {
+        color: var(--black);
+        margin-bottom: 22px;
+      }
+    }
+  }
+  &::before {
+    position: absolute;
+    content: "";
+    background-color: #ebfffe;
+    width: 72px;
+    height: 100%;
+    z-index: -1;
+  }
+}
+.sitemap-items-bottom {
+  &::before {
+    background-color: #ebf5ff;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sitemap {
+    .container {
+      gap: 40px;
+    }
+    .site-details {
+      gap:40px;
+      max-width: 100%;
+    }
+    h1 {
+      font-size: 40px;
+    }
+  }
+  .sitemap-items-top {
+    gap: 40px;
+    h2 {
+      font-size: 30px;
+      margin-left: 20px;
+    }
+    .sitemap-lists {
+      max-width: 100%;
+      margin-left: 90px;
+      ul {
+        font-size: 16px;
+      }
+    }
+    &::before {
+      width: 50px;
+    }
+  }
+  .sitemap-items-center {
+    gap: 40px;
+    h2 {
+      font-size: 30px;
+      margin-left: 20px;
+    }
+    .sitemap-lists {
+      max-width: 100%;
+      margin-left: 90px;
+      ul {
+        font-size: 16px;
+      }
+    }
+    &::before {
+      width: 50px;
+    }
+  }
+}

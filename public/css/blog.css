@@ -1,0 +1,118 @@
+.hero-single-blog {
+  height: calc(100vh - 140px);
+  width: 100%;
+}
+.hero-single-blog img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.blog-details {
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    border-bottom: 1px solid #d9d9d9;
+    padding-block: 56px;
+  }
+  p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #6f6f6f;
+    line-height: 37px;
+    text-align: justify;
+  }
+  .blog-details-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    h3 {
+      max-width: 900px;
+      font-size: 28px;
+      font-weight: 600;
+      color: #134e88;
+      line-height: 40px;
+    }
+    .date {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      span {
+        font-size: 14px;
+        font-weight: 500;
+        color: #6f6f6f;
+      }
+    }
+  }
+  .blog-question {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    h4 {
+      font-size: 24px;
+      color: var(--black);
+    }
+  }
+}
+.blog-cards {
+  padding-block: 56px;
+  .card-container-blog {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+    gap: 24px;
+    width: 100%;
+  }
+  .blog-card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h2 {
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 57.24px;
+      letter-spacing: -0.6655414700508118px;
+      color: var(--black);
+    }
+    a {
+      font-size: 12px;
+      font-weight: 400;
+      color: #484848;
+      display: block;
+      text-decoration: underline;
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .blog-cards {
+    .card-container-blog {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      row-gap: 8px;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .blog-details {
+    .container {
+      gap: 40px;
+    }
+    p {
+      line-height: 34px;
+    }
+    .blog-details-title {
+      gap: 16px;
+      h3 {
+        max-width: 100%;
+        font-size: 20px;
+        line-height: 35px;
+      }
+    }
+    .blog-question {
+      gap: 16px;
+      h4 {
+        font-size: 22px;
+      }
+    }
+  }
+}

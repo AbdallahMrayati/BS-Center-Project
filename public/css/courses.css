@@ -1,0 +1,110 @@
+.hero-courses {
+  background-image: url("/assets/imgs/bg-courses.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  .container {
+    div {
+      margin-bottom: 24px;
+    }
+  }
+}
+.courses-section {
+  margin-block: 94px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 60px 0px #0000001f;
+  overflow-y: scroll;
+  max-height: 833px;
+  height: 100%;
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #b3b3b3;
+  }
+  .courses-section-head {
+    font-size: 14px;
+    font-weight: 600;
+    padding-inline: 50px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #253a7b;
+    p {
+      font-size: 18px;
+    }
+  }
+  .search-area {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 16px;
+    width: 379px;
+    border-bottom: 2px solid #efefef;
+    padding-bottom: 6px;
+    input {
+      flex: 1;
+      border: 0;
+    }
+  }
+}
+.courses-items {
+  padding-top: 30px;
+  height: 100%;
+  flex-direction: column;
+}
+.courses-items .course-item {
+  color: #313131;
+  font-size: 14px;
+  font-weight: 500;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 50px;
+  border-bottom: 2px solid #efefef;
+  transition: 0.5s;
+  &:hover {
+    background-color: #f6f6f6;
+  }
+  span {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    border: 1px solid #afafaf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.courses-items div:last-child {
+  border-bottom: none;
+}
+@media screen and (max-width: 769px) {
+  .courses-section {
+    width: 100%;
+    box-shadow: none;
+    margin-block: 40px;
+    .courses-section-head {
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+    .search-area {
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    .courses-section-head {
+      padding-inline: 6vw;
+    }
+  }
+  .courses-items {
+    padding-top: 0;
+    .course-item {
+      height: 70px;
+      padding-inline: 6vw;
+      span {
+        flex-shrink: 0;
+      }
+    }
+  }
+}

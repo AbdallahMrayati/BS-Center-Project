@@ -1,0 +1,223 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class CategorySeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $categories = [
+            // English
+            [
+                'title' => 'Sales and Marketing',
+                'lang' => 'en',
+                'description' => 'Courses related to sales and marketing strategies.',
+                'image_alt' => 'Sales and Marketing Image',
+                'image_title' => 'Sales and Marketing Title',
+                'slug' => 'sales-and-marketing',
+                'h1' => 'Sales and Marketing Courses',
+                'meta_title' => 'Sales and Marketing Courses - Learn Marketing Strategies',
+                'meta_description' => 'Explore a range of sales and marketing courses to enhance your skills.',
+                'meta_keywords' => 'sales, marketing, courses, strategies',
+                'meta_robots' => 'index,follow',
+                'meta_image_size' => '1200x630',
+                'meta_type' => 'website',
+                'meta_site_name' => 'My Site',
+                'meta_site' => 'https://example.com',
+                'meta_local' => 'en_US',
+                'meta_card' => 'summary_large_image',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'title' => 'Oil & Gas and Petroleum',
+                'lang' => 'en',
+                'description' => 'Courses related to oil & gas and petroleum industry.',
+                'image_alt' => 'Oil & Gas and Petroleum Image',
+                'image_title' => 'Oil & Gas and Petroleum Title',
+                'slug' => 'oil-gas-and-petroleum',
+                'h1' => 'Oil & Gas and Petroleum Courses',
+                'meta_title' => 'Oil & Gas and Petroleum Courses - Learn About Oil & Gas Industry',
+                'meta_description' => 'Discover courses focused on the oil & gas and petroleum sectors.',
+                'meta_keywords' => 'oil, gas, petroleum, industry, courses',
+                'meta_robots' => 'index,follow',
+                'meta_image_size' => '1200x630',
+                'meta_type' => 'website',
+                'meta_site_name' => 'My Site',
+                'meta_site' => 'https://example.com',
+                'meta_local' => 'en_US',
+                'meta_card' => 'summary_large_image',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'title' => 'Project Management',
+                'lang' => 'en',
+                'description' => 'Courses related to project management methodologies.',
+                'image_alt' => 'Project Management Image',
+                'image_title' => 'Project Management Title',
+                'slug' => 'project-management',
+                'h1' => 'Project Management Courses',
+                'meta_title' => 'Project Management Courses - Learn Project Management',
+                'meta_description' => 'Explore a range of project management courses to enhance your skills.',
+                'meta_keywords' => 'project management, courses, methodologies',
+                'meta_robots' => 'index,follow',
+                'meta_image_size' => '1200x630',
+                'meta_type' => 'website',
+                'meta_site_name' => 'My Site',
+                'meta_site' => 'https://example.com',
+                'meta_local' => 'en_US',
+                'meta_card' => 'summary_large_image',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'title' => 'Management and Leadership',
+                'lang' => 'en',
+                'description' => 'Courses focused on management and leadership skills development.',
+                'image_alt' => 'Management and Leadership Image',
+                'image_title' => 'Management and Leadership Title',
+                'slug' => 'management-and-leadership',
+                'h1' => 'Management and Leadership Courses',
+                'meta_title' => 'Management and Leadership Courses - Enhance Leadership Skills',
+                'meta_description' => 'Discover courses aimed at improving management and leadership abilities.',
+                'meta_keywords' => 'management, leadership, courses, skills development',
+                'meta_robots' => 'index,follow',
+                'meta_image_size' => '1200x630',
+                'meta_type' => 'website',
+                'meta_site_name' => 'My Site',
+                'meta_site' => 'https://example.com',
+                'meta_local' => 'en_US',
+                'meta_card' => 'summary_large_image',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'title' => 'Quality and Productivity',
+                'lang' => 'en',
+                'description' => 'Explore courses that focus on quality management and productivity enhancement.',
+                'image_alt' => 'Quality and Productivity Image',
+                'image_title' => 'Quality and Productivity Title',
+                'slug' => 'quality-and-productivity',
+                'h1' => 'Quality and Productivity Courses',
+                'meta_title' => 'Quality and Productivity Courses - Enhance Quality Management Skills',
+                'meta_description' => 'Discover courses aimed at improving quality management and productivity.',
+                'meta_keywords' => 'quality management, productivity, courses, skills enhancement',
+                'meta_robots' => 'index,follow',
+                'meta_image_size' => '1200x630',
+                'meta_type' => 'website',
+                'meta_site_name' => 'My Site',
+                'meta_site' => 'https://example.com',
+                'meta_local' => 'en_US',
+                'meta_card' => 'summary_large_image',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'title' => 'Healthcare Management',
+                'lang' => 'en',
+                'description' => 'Courses focused on healthcare management and administration.',
+                'image_alt' => 'Healthcare Management Image',
+                'image_title' => 'Healthcare Management Title',
+                'slug' => 'healthcare-management',
+                'h1' => 'Healthcare Management Courses',
+                'meta_title' => 'Healthcare Management Courses - Learn Healthcare Administration',
+                'meta_description' => 'Explore courses aimed at healthcare management and administration.',
+                'meta_keywords' => 'healthcare management, administration, courses',
+                'meta_robots' => 'index,follow',
+                'meta_image_size' => '1200x630',
+                'meta_type' => 'website',
+                'meta_site_name' => 'My Site',
+                'meta_site' => 'https://example.com',
+                'meta_local' => 'en_US',
+                'meta_card' => 'summary_large_image',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // Arabic
+            [
+                'title' => 'دورات الصيانة والتشغيل',
+                'lang' => 'ar',
+                'description' => 'استكشف الدورات التي تركز على إدارة الصيانة والتشغيل.',
+                'image_alt' => 'صيانة وتشغيل الصورة',
+                'image_title' => 'عنوان صيانة وتشغيل',
+                'slug' => 'دورات-الصيانة-والتشغيل',
+                'h1' => 'دورات الصيانة والتشغيل',
+                'meta_title' => 'دورات الصيانة والتشغيل - تعلم إدارة الصيانة والتشغيل',
+                'meta_description' => 'استكشف الدورات التي تهدف إلى تحسين إدارة الصيانة والتشغيل.',
+                'meta_keywords' => 'إدارة الصيانة، التشغيل، الدورات',
+                'meta_robots' => 'index,follow',
+                'meta_image_size' => '1200x630',
+                'meta_type' => 'website',
+                'meta_site_name' => 'موقعي',
+                'meta_site' => 'https://example.com',
+                'meta_local' => 'ar_AR',
+                'meta_card' => 'summary_large_image',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'title' => 'دورات المحاسبة والمالية',
+                'lang' => 'ar',
+                'description' => 'استكشف الدورات التي تركز على المحاسبة والمالية.',
+                'image_alt' => 'دورات المحاسبة والمالية',
+                'image_title' => 'دورات المحاسبة والمالية',
+                'slug' => 'دورات-المحاسبة-والمالية',
+                'h1' => 'دورات المحاسبة والمالية',
+                'meta_title' => 'دورات المحاسبة والمالية - تعلم المحاسبة والمالية',
+                'meta_description' => 'استكشف الدورات التي تهدف إلى تعليم المحاسبة والمالية.',
+                'meta_keywords' => 'المحاسبة، المالية، الدورات',
+                'meta_robots' => 'index,follow',
+                'meta_image_size' => '1200x630',
+                'meta_type' => 'website',
+                'meta_site_name' => 'موقعي',
+                'meta_site' => 'https://example.com',
+                'meta_local' => 'ar_AR',
+                'meta_card' => 'summary_large_image',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'title' => 'دورات خدمة العملاء',
+                'lang' => 'ar',
+                'description' => 'استكشف الدورات التي تركز على خدمة العملاء.',
+                'image_alt' => 'دورات خدمة العملاء',
+                'image_title' => 'دورات خدمة العملاء',
+                'slug' => 'دورات-خدمة-العملاء',
+                'h1' => 'دورات خدمة العملاء',
+                'meta_title' => 'دورات خدمة العملاء - تعلم خدمة العملاء',
+                'meta_description' => 'استكشف الدورات التي تهدف إلى تعليم خدمة العملاء.',
+                'meta_keywords' => 'خدمة العملاء، الدورات',
+                'meta_robots' => 'index,follow',
+                'meta_image_size' => '1200x630',
+                'meta_type' => 'website',
+                'meta_site_name' => 'موقعي',
+                'meta_site' => 'https://example.com',
+                'meta_local' => 'ar_AR',
+                'meta_card' => 'summary_large_image',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+        ];
+
+        // Insert the categories into the database
+        DB::table('categories')->insert($categories);
+    }
+}
