@@ -66,10 +66,18 @@ class CategoryController extends Controller
         }
 
         $categoryCourses = $this->getCategoryCourses($category);
+        
+                  if ($category && $category->getFirstMediaUrl('images')) {
+                $category->image_url = $category->getFirstMediaUrl('images');
+            } else {
+                $category->image_url = null;
+            }
+        
         return view('screen.courses', compact('category', 'categoryCourses'));
     }
-
-    public function showCoursesViaCity($venueslug, $categoryslug)
+    
+    
+        public function showCoursesViaCity($venueslug, $categoryslug)
     {
 
         $category = Category::where('slug', $categoryslug)->first();
@@ -79,6 +87,13 @@ class CategoryController extends Controller
         }
 
         $categoryCourses = $this->getCategoryCourses($category);
+        
+                  if ($category && $category->getFirstMediaUrl('images')) {
+                $category->image_url = $category->getFirstMediaUrl('images');
+            } else {
+                $category->image_url = null;
+            }
+        
         return view('screen.courses', compact('category', 'categoryCourses'));
     }
 

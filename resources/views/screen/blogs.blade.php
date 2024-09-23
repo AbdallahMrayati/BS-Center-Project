@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ config('app.name', 'BSC') }} | {{ __('content.Blogs') }}
+    {{ config('app.name', 'BSC') }} | {{__('content.Blogs')}}
 @endsection
 
 @section('content')
     <div class="breadcrumb-bar">
         <div class="about-header container">
             <ul>
-                <li><a href="{{ route('blogs.index') }}">{{ __('content.Blogs') }}</a></li>
+                <li><a href="{{ route('blogs.index') }}">{{__('content.Blogs')}}</a></li>
                 <img src="{{ asset('assets/icons/arrow.svg') }}" />
             </ul>
         </div>
@@ -16,7 +16,7 @@
 
     <div class="hero-container hero-blogs">
         <div class="container">
-            <h1>{{ __('content.Explore Our Blogs') }}</h1>
+             <h1>{{ __('content.Explore Our Blogs') }}</h1>
         </div>
     </div>
 
@@ -24,18 +24,19 @@
         {{-- <swiper-container class="mySwiper swiper-cards" init="false"> --}}
         <!-- Swiper slides will be added dynamically -->
         @foreach ($blogs as $item)
+         <a href="{{ route('blog.show', $item->slug) }}">
             <div class="card-blogs">
-                <img src="../assets/imgs/card-blog.png" alt="{{ $item['title'] }}" class="card-blog-img" />
+                <img src="{{ asset($item->image) }}" alt="{{ $item['title'] }}" class="card-blog-img" />
                 <div class="card-blog-content">
                     <h3>
                         {{ $item['title'] }}
                     </h3>
                     <div class="card-blog-desc">
                         @if (strlen($item->description) > 125)
-                            <p>{{ Str::limit($item->description, 125, '...') }}</p>
+                             {!! Str::limit($item->description, 125, '...') !!}
                             <a href="{{ route('blog.show', $item->slug) }}">more</a>
                         @else
-                            <p>{{ $item->description }}</p>
+                            {!! $item->description !!}
                         @endif
                     </div>
                     <div class="card-blog-footer">
@@ -47,6 +48,7 @@
                     </div>
                 </div>
             </div>
+            </a>
         @endforeach
         {{-- </swiper-container> --}}
         <div class="blogs-arrows">

@@ -38,14 +38,16 @@
             <div class="search flex-between">
                 <span class="line-search"></span>
                 @if (LaravelLocalization::getCurrentLocale() == 'en')
-                    <a class="btn" href="{{ LaravelLocalization::getLocalizedURL('ar', route('home.index')) }}"
+                    <a class="btn"
+                        href="{{ LaravelLocalization::getLocalizedURL('ar', route('home.index')) }}"
                         role="button" style="color: #616161;">
                         <h3 style="flex-shrink: 0;">
                             {{ __('الدورات بالعربية ') }}
                         </h3>
                     </a>
                 @elseif (LaravelLocalization::getCurrentLocale() == 'ar')
-                    <a class="btn" href="{{ LaravelLocalization::getLocalizedURL('en', route('home.index')) }}"
+                    <a class="btn"
+                        href="{{ LaravelLocalization::getLocalizedURL('en', route('home.index')) }}"
                         role="button" style="color: #616161;">
                         <h3 style="flex-shrink: 0;">
                             {{ __('English Courses') }}
@@ -53,7 +55,6 @@
                     </a>
                 @endif
             </div>
-
             {{-- <div class="search flex-between">
                 <span class="line-search"></span>
                 <h3 style="flex-shrink: 0;">الدورات بالعربية</h3>

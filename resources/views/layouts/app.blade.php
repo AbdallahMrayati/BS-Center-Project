@@ -43,14 +43,15 @@
     </a>
 
     @include('includes.nav')
-    {{-- @include('layouts.flashMessage') --}}
+    <!--@include('layouts.flashMessage')-->
+
     @yield('content')
 
     @include('includes.footer')
 
     @yield('scripts')
-
-    <script>
+    
+        <script>
         document.querySelectorAll('a').forEach(function(a) {
             if (!a.textContent.trim() && !a.children.length) {
                 a.remove();
@@ -58,10 +59,10 @@
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/swiper.js') }}"></script>
 
+    {{-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script> --}}
     <script src="{{ asset('main.js') }}"></script>
     <script src="{{ asset('navBar.js') }}"></script>
     <script src="{{ asset('js/blog.js') }}"></script>

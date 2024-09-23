@@ -6,16 +6,17 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'show']]);
-        $this->middleware('permission:user-create', ['only' => ['store']]);
-        $this->middleware('permission:user-edit', ['only' => ['update', 'toggleStatus']]);
-        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        // $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'show']]);
+        // $this->middleware('permission:user-create', ['only' => ['store']]);
+        // $this->middleware('permission:user-edit', ['only' => ['update', 'toggleStatus']]);
+        // $this->middleware('permission:user-delete', ['only' => ['destroy']]);
     }
 
     public function index()
@@ -25,6 +26,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+
         try {
             $validated = $request->validate([
                 'name' => 'required|string',

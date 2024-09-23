@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Models\Register;
 use App\Models\Timing;
-// use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Request;
 use Ramsey\Uuid\Type\Time;
 
 class RegisterController extends Controller
@@ -20,7 +20,7 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        return $request;
+        // return $request;
         // Validate the incoming request
         $validatedData = $request->validate([
             'timing_id'             => 'nullable|exists:timings,id',

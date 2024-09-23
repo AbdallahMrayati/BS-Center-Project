@@ -11,8 +11,15 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::all();
-        // return $blogs;
+        $currentLocale = app()->getLocale();
+        $blogs = Blog::where('lang', $currentLocale)->where('hidden', false)->get();
+ 
+        foreach($blogs as $blog){
+        if ($blog->hasMedia('images')) {
+            $blog['image'] = $blog->getFirstMediaUrl('images');
+           }
+        }
+
         return view('screen.blogs')->with('blogs', $blogs);
     }
 
@@ -24,7 +31,13 @@ class BlogController extends Controller
             return response()->json(['message' => 'Blog not found'], 404);
         }
 
+        if ($blog->hasMedia('images')) {
+            $blog['image'] = $blog->getFirstMediaUrl('images');
+        }
+
+
         $blogsByTag = $this->getBlogsByTag($blog->tag_name);
+        
 
         return view('screen.blog', compact(['blog', 'blogsByTag']));
     }

@@ -29,32 +29,32 @@ class CityController extends Controller
 
         // Get the filtered timings with related course and city data
         $timings = $query->with(['course', 'city'])
-            ->get(['course_id', 'city_id', 'date_from', 'date_to'])
-            ->map(function ($timing) {
-                return [
-                    'course_title' => $timing->course->title,
-                    'course_image' => $timing->course->getFirstMediaUrl('images'), // Adjust the media collection name if needed
-                    'date_from' => $timing->date_from,
-                    'date_to' => $timing->date_to,
-                    'city_title' => $timing->city->title,
-                ];
-            });
+                        ->get(['course_id', 'city_id', 'date_from', 'date_to'])
+                        ->map(function ($timing) {
+                            return [
+                                'course_title' => $timing->course->title,
+                                'course_image' => $timing->course->getFirstMediaUrl('images'), // Adjust the media collection name if needed
+                                'date_from' => $timing->date_from,
+                                'date_to' => $timing->date_to,
+                                'city_title' => $timing->city->title,
+                            ];
+                        });
 
         // Fetch filtered cities
         $cities = City::where('lang', $currentLocale)
-            ->where('hidden', false)
-            ->get();
+                      ->where('hidden', false)
+                      ->get();
         // Fetch durations
         $durations = Timing::select('duration')->distinct()->pluck('duration');
 
         // Fetch filtered categories
         $categories = Category::where('lang', $currentLocale)
-            ->where('hidden', false)
-            ->get();
+                              ->where('hidden', false)
+                              ->get();
 
         $cities = City::where('lang', $currentLocale)
-            ->where('hidden', false)
-            ->with('media')->get(); // Fetch cities with their media
+                        ->where('hidden', false)
+                        ->with('media')->get(); // Fetch cities with their media
 
         return view('screen.venus', compact('timings', 'cities', 'categories', 'durations'));
     }
@@ -66,9 +66,16 @@ class CityController extends Controller
         if (!$city) {
             return response()->json(['message' => 'City not found'], 404);
         }
+        
+        if ($city->hasMedia('images')) {
+            $city['image'] = $city->getFirstMediaUrl('images');
+        }
+
+
         $categoriesByCity = $this->getCategoriesByCity($city->slug);
         $coursesByCity = $this->getCoursesByCity($city->slug);
 
+// return  $categoriesByCity;
         return view('screen.city', compact('city', 'categoriesByCity', 'coursesByCity'));
     }
 
@@ -88,9 +95,11 @@ class CityController extends Controller
                 $category->media_url = $category->getFirstMediaUrl('images');
                 return $category;
             });
+            
+            return $categories;
 
         // Return the categories
-        return response()->json($categories);
+        // return response()->json($categories);
     }
 
     private function getCoursesByCity($slug)
@@ -106,7 +115,8 @@ class CityController extends Controller
             $query->where('city_id', $city->id);
         })->get();
 
+return $courses;
         // Return the courses
-        return response()->json($courses);
+        // return response()->json($courses);
     }
 }

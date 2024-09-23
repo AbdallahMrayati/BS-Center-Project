@@ -13,7 +13,7 @@ return [
 
     "category" => "الفئة",
     "Course" => "الدورة",
-    "Courses" => "الدورات",
+         "Courses" => "الدورات",
     "Venue" => "الموقع",
     "Month" => "الشهر",
     "Duration" => "المدة",

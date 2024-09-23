@@ -8,7 +8,7 @@
     <div class="breadcrumb-bar">
         <div class="about-header container">
             <ul>
-                <li><a class="main-li" href="{{ route('home.index') }}">{{ __('content.All Categories') }}</a></li>
+                <li><a class="main-li" href="{{ route('home.index') }}">{{ __('content.Categories') }}</a></li>
                 <img src="{{ asset('assets/icons/arrow.svg') }}" />
             </ul>
         </div>
@@ -36,7 +36,7 @@
                         <img src="{{ $item['media_url'] }}" alt="{{ $item['image_alt'] }}">
                         <div class="card-overlay">
                             <h3>{{ $item['title'] }}</h3>
-                            <p>{{ $item['description'] }} </p>
+                            {!! $item['description'] !!}
                             <span class="line-card"></span>
                             <span href="{{ route('courses.index', $item->slug) }}" class="category-card-arrow"><img
                                     src="/assets/icons/arrow.svg" alt="" /></span>

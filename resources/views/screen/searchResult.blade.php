@@ -81,41 +81,4 @@
         </section>
     @endif
 
-    {{-- JavaScript --}}
-    {{-- <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const timingsData = document.getElementById('search-data').getAttribute('data-search');
-    const timings = JSON.parse(timingsData);
-
-    const cardContainer = document.querySelector(".search-card-container");
-
-    timings.forEach((timing) => {
-        const card = document.createElement("a");
-        card.href = `/course/${timing.course_slug}`; // Dynamic link to the course detail page
-        card.classList.add("card");
-
-        card.innerHTML = `
-            <img src="${timing.course_image}" alt="${timing.course_title}">
-            <div class="card-content">
-                <div class="card-title">${timing.course_title}</div>
-                <div class="card-dates">
-                    <img src="{{ asset('assets/icons/calendar2.svg') }}" alt="" />
-                    <span>${timing.date_from} to ${timing.date_to} ${new Date(timing.date_from).getFullYear()}</span>
-                </div>
-                <div class="card-location">
-                    <img src="{{ asset('assets/icons/location.svg') }}" alt="" class="location-icon" />
-                    <span>${timing.city_title}</span>
-                </div>
-                <div class="card-buttons">
-                    <a href='/register/${timing.id}' class="btn-primary">Register Now</a>
-                    <a href="/course/${timing.course_slug}" class="btn-secondary">Learn more</a>
-                </div>
-            </div>
-        `;
-
-        cardContainer?.appendChild(card);
-    });
-});
-</script> --}}
-
 @endsection

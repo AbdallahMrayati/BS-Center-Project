@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Course;
 use App\Models\Timing;
 use Exception;
@@ -16,14 +17,24 @@ class CourseController extends Controller
         $currentLocale = app()->getLocale(); // Get the current language
 
         $course = Course::with(['category', 'timings.city'])->where('slug', $slug)->firstOrFail();
-        $course['image'] = $course->getFirstMediaUrl('images') ?? $course->category->getFirstMediaUrl('images');
+        
+        if($course['image']){
+             $course['image'] = $course->getFirstMediaUrl('images');
+        }else{
+            $randomImage = Cache::get('random_image');
+           $course['image'] = $randomImage->original_url;
+        }
+        
 
+        
         $timings = $course->timings()
             ->where('hidden', false)
             ->where('lang', $currentLocale)
             ->get();
 
         $relatedCourses = $this->getRelatedTimings($course->slug);
+
+        // return $course;
 
         return view('screen.course', compact(['course', 'timings', 'relatedCourses']));
     }

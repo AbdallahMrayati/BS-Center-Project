@@ -91,30 +91,36 @@ class ImportData
         $timing->save();
         return $timing;
     }
-
     // private function convertExcelDate($dateString)
     // {
     //     return date('Y-m-d', strtotime($dateString));  // Convert the date string to 'Y-m-d' format
     // }
 
-    private function customSlug($string = null, $separator = "-")
-    {
-        if (is_null($string)) {
-            return "";
-        }
-        $string = trim($string);
-        $string = mb_strtolower($string, "UTF-8");
-        // '/' and/or '\' if found and not remoeved it will change the get request route
-        $string = str_replace('/', $separator, $string);
-        $string = str_replace('\\', $separator, $string);
-        $string = preg_replace('/\s+/', $separator, $string);
-        $string  = preg_replace('/[^\w\x{0621}-\x{064A}0-9' . preg_quote($separator) . ']+/u', '', $string);
-
-        return $string;
+private function customSlug($string = null, $separator = "-")
+{
+    if (is_null($string)) {
+        return "";
     }
+
+    $string = trim($string);
+    $string = mb_strtolower($string, "UTF-8");
+
+    $string = str_replace(['&', '@', '#', '$', '%'], '', $string);
+
+    $string = str_replace('/', $separator, $string);
+    $string = str_replace('\\', $separator, $string);
+
+    $string = preg_replace('/\s+/', $separator, $string);
+
+    $string = preg_replace('/[^\w\x{0621}-\x{064A}0-9' . preg_quote($separator) . ']+/u', '', $string);
+
+    return $string;
+}
+
 
     public function chunkSize(): int
     {
         return 100;
     }
 }
+

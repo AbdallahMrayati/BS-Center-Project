@@ -1,31 +1,36 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ config('app.name', 'BSC') }} | {{ __('content.Courses') }}
+    {{ config('app.name', 'BSC') }} | Courses
 @endsection
 
 @section('content')
     <div class="breadcrumb-bar">
         <div class="about-header container">
             <ul>
-                <li><a href="{{ route('categories.index') }}">{{ __('content.Categories') }}</a></li>
+                <li><a href="{{ route('categories.index') }}">Categories</a></li>
                 <img src="{{ asset('assets/icons/arrow.svg') }}" alt="" />
                 <li>{{ $category->title }}</li>
             </ul>
         </div>
     </div>
-    <div class="hero-container hero-courses">
-        <div class="container">
-            <h1>{{ $category->title }}</h1>
-            {{ $category->description }}
+<div class="hero-container hero-courses" style="background-image: url('{{ asset($category->image_url) }}');">
+    <div class="container position-relative">
+        <div class="text-overlay">
+            <h1>{{ $category->h1 }}</h1>
+            {!! $category->description !!}
         </div>
     </div>
+</div>
+
+
+
 
     <div class="courses-section container">
         <div class="courses-section-head">
             <p>Courses Specializes in {{ $category->title }}</p>
             <div class="search-area">
-                <input type="text" class="search-area-input" placeholder="{{ __('content.Search for courses') }}" />
+                <input type="text" class="search-area-input" placeholder="Search for courses" />
                 <img src="{{ asset('assets/icons/search.svg') }}" />
             </div>
         </div>
@@ -44,6 +49,7 @@
                     <p style="color:rgb(121, 121, 121)">No courses available</p>
                 </a>
             @endif
+
         </div>
     </div>
 @endsection

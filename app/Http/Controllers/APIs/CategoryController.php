@@ -58,14 +58,14 @@ class CategoryController extends Controller
             // Handle image upload and association
             if ($request->hasFile('image')) {
                 $media = $category->addMediaFromRequest('image')->toMediaCollection('images');
-                $imageUrl = $media->getUrl();  // Get the URL of the single image
+                $imageUrl = $media->getFullUrl();  // Get the URL of the single image
             }
 
             // Handle multi images
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
                     $media = $category->addMedia($image)->toMediaCollection('multi_images');
-                    $multiImagesUrls[] = $media->getUrl();  // Get the URL of each multi image
+                    $multiImagesUrls[] = $media->getFullUrl();  // Get the URL of each multi image
                 }
             }
 
@@ -183,12 +183,16 @@ class CategoryController extends Controller
             // Handle multi images
             if ($request->hasFile('images')) {
                 // Clear the existing multi_images collection before adding new images
-                $category->clearMediaCollection('multi_images');
+                // $category->clearMediaCollection('multi_images');
 
                 foreach ($request->file('images') as $image) {
                     $media = $category->addMedia($image)->toMediaCollection('multi_images');
                     $multiImagesUrls[] = $media->getUrl();  // Get the URL of each multi image
                 }
+                // Retain the existing images' URLs along with the new ones
+$multiImagesUrls = $category->getMedia('multi_images')->map(function ($media) {
+    return $media->getUrl();
+})->toArray();
             } else {
                 // If no new multi images were uploaded, retain the existing ones
                 $multiImagesUrls = $category->getMedia('multi_images')->map(function ($media) {

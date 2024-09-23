@@ -17,7 +17,7 @@
         </div>
     </div>
     <section class="hero-single-course">
-        <img src="{{ asset('assets/imgs/bg-city.webp') }}" alt="" />
+        <img src="{{ asset($city->image) }}" alt="" />
         <div class="course-hero-title">
             <div>
                 <h1>Training courses in {{ $city->title }}</h1>
@@ -32,20 +32,24 @@
                 <h2>Categories</h2>
                 {{-- <p>select categories in {{ $city->title }}</p> --}}
             </div>
-            <div class="categories-cards" id="category-data" data-categories='@json($categoriesByCity)'>
-                @foreach ($categoriesByCity as $item)
-                    <a class="category-card" href="{{ route('courses.index', $item->slug) }}" title="category-name">
-                        <img src="{{ $item['media_url'] }}" alt="{{ $item['image_alt'] }}">
-                        <div class="card-overlay">
-                            <h3>{{ $item['title'] }}</h3>
-                            <p>{{ $item['description'] }} </p>
-                            <span class="line-card"></span>
-                            <span href="{{ route('courses.index', $item->slug) }}" class="category-card-arrow"><img
-                                    src="/assets/icons/arrow.svg" alt="" /></span>
-                        </div>
-                    </a>
-                @endforeach
+<div class="categories-cards" id="category-data">
+    @foreach ($categoriesByCity as $item)
+    <a class="category-card" href="{{ route('showCoursesViaCity.index', [$city->slug, $item->slug]) }}" title="category-name">
+
+            <img src="{{ $item->media_url }}" alt="{{ $item->image_alt }}">
+            <div class="card-overlay">
+                <h3>{{ $item->title }}</h3>
+                <p>{!! $item->description !!} </p>
+                <span class="line-card"></span>
+                <span href="{{ route('courses.index', $item->slug) }}" class="category-card-arrow">
+                    <img src="/assets/icons/arrow.svg" alt="" />
+                </span>
             </div>
+        </a>
+    @endforeach
+</div>
+
+
         </div>
     </section>
 
@@ -81,67 +85,4 @@
         </div>
     </section>
 @endsection
-{{--
-@section('scripts')
-    <script>
-        // get categories
-        document.addEventListener("DOMContentLoaded", function() {
-            const slug = @json($city->slug);
-            const url = `/categories/${slug}`;
 
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-
-                    const container = document.querySelector(".categories-cards");
-                    container.innerHTML = ''; // Clear the container before adding new data
-
-                    data.forEach(item => {
-                        if (item.description) {
-                            description = item.description
-                        } else {
-                            description = ""
-                        }
-                        container.innerHTML += `
-                            <a class="category-card" href='/courses/${item.slug}'>
-                            <img src="${item.media_url}" alt="${item.image_alt}">
-                            <div class="card-overlay">
-                                <h3>${item.title}</h3>
-                                <p>${description}</p>
-                                <span class="line-card"></span>
-                                <span class="category-card-arrow"><img src="/assets/icons/arrow.svg" alt=""></span>
-                            </div>
-                        </a>
-                        `;
-                    });
-                })
-                .catch(error => console.error('Error fetching Couses:', error));
-        });
-
-        // get courses
-        document.addEventListener("DOMContentLoaded", function() {
-            const slug = @json($city->slug);
-            const url = `/get-courses/${slug}`;
-
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-
-                    const container = document.querySelector(".courses-items");
-                    container.innerHTML = ''; // Clear the container before adding new data
-
-                    data.forEach(item => {
-                        container.innerHTML += `
-                            <a class="course-item" href='/course/${item.slug}'>
-                            <p>${item.title}</p>
-                            <span href='/course/${item.slug}'>
-                                <img src="/assets/icons/arrow.svg" alt="" />
-                            </span>
-                            </a>
-                        `;
-                    });
-                })
-                .catch(error => console.error('Error fetching Couses:', error));
-        });
-    </script>
-@endsection --}}

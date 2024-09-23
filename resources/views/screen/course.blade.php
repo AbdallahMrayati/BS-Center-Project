@@ -12,8 +12,7 @@
                 <img src="{{ asset('assets/icons/arrow.svg') }}" alt="" />
                 <li>
                     @if ($course->category && $course->category->slug)
-                        <a
-                            href="{{ route('courses.index', ['slug' => $course->category->slug]) }}">{{ __('content.Courses') }}</a>
+                        <a href="{{ route('courses.index', ['slug' => $course->category->slug]) }}">{{ __('content.Courses') }}</a>
                     @else
                         <a href="#">{{ __('content.Courses') }}</a>
                     @endif
@@ -23,22 +22,36 @@
             </ul>
         </div>
     </div>
-
-    <section class="hero-single-course">
-        @if ($course->image)
-            <img src="{{ $course->image }}" alt="" />
+    
+<section class="hero-single-course">
+    @if ($course->image)
+        <img src="{{ asset($course->image) }}" alt="{{ $course->image_alt }}" />
+    @else
+        @php
+            // Check if the category has media and get the first one
+            $firstImageUrl = null;
+            if ($course->category->media->isNotEmpty()) {
+                $firstImage = $course->category->media->first(); // Use the first() method to get the first media item
+                $firstImageUrl = $firstImage->original_url; // Get the original URL attribute of the first media item
+            }
+        @endphp
+        @if ($firstImageUrl)
+            <img src="{{ asset($firstImageUrl) }}" alt="{{ $course->image_alt }}" />
         @else
-            <img src="{{ asset('assets/imgs/bg-blog.webp') }}" alt="" />
+            <img src="/assets/imgs/bg-blog.webp" alt="default image" />
         @endif
-        <div class="course-hero-title">
-            <div>
-                <h1>{{ $course->h1 }}</h1>
-                <p>{{ $course->title }}</p>
-            </div>
+    @endif
+    <div class="course-hero-title">
+        <div>
+            <h1>{{ $course->h1 }}</h1>
+            <p>{{ $course->title }}</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="course-table container">
+
+
+       <section class="course-table container">
         <div class="flex-between">
             <div class="popup-bg" onclick="hidePopup()"></div>
             <div id="popup-3" class="form-popup popup">
@@ -162,21 +175,21 @@
     <section class="search-courses">
         <div class="container">
             <div class="course-card-title">
-                <h2>{{ __('content.Related Courses') }}</h2>
+                <h2>Related Courses</h2>
                 @if ($course->category && $course->category->slug)
-                    <a
-                        href="{{ route('courses.index', ['slug' => $course->category->slug]) }}">{{ __('content.See All') }}</a>
+                    <a href="{{ route('courses.index', ['slug' => $course->category->slug]) }}">{{ __('content.See All') }}</a>
                 @else
                     <a href="#">{{ __('content.See All') }}</a>
                 @endif
             </div>
             <div class="courses-container">
                 @foreach ($relatedCourses as $item)
+                              <a href="{{ route('course.show', $item['course_slug']) }}" class="card-link">
                     <div class="card">
                         <img src="{{ $item['course_image'] }}" alt="">
                         <div class="card-content">
                             <div class="card-title">{{ $item['course_title'] }}</div>
-                            <div class="card-dates">
+                             <div class="card-dates">
                                 <img src="/assets/icons/calender2.svg" alt="" />
                                 <span>
                                     {{ __('content.From') }}
@@ -201,60 +214,10 @@
                             </div>
                         </div>
                     </div>
+                    </a>
                 @endforeach
             </div>
         </div>
     </section>
 @endsection
 
-@section('scripts')
-    <!--recaptcha library  -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script>
-        function onSubmit(token) {
-            document.getElementById("demo-form").submit();
-        }
-    </script>
-    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
-    {{--
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const slug = @json($course->slug);
-            const url = `/${slug}/related-timings`;
-            console.log("in scripte -------------")
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    console.log("in scripte -------------")
-                    console.log("in scripte -------------")
-                    console.log(data)
-                    const container = document.querySelector(".courses-container");
-                    container.innerHTML = ''; // Clear the container before adding new data
-
-                    data.timings.forEach(item => {
-                        container.innerHTML += `
-                        <div class="card">
-                            <img src="${item.course_image}" alt="${item.image_alt}">
-                            <div class="card-title">${item.course_title}</div>
-                            <div class="card-dates">
-                                <img src="/assets/icons/calender2.svg" alt="" />
-                                <span>${item.date_from} to ${item.date_to}</span>
-                            </div>
-                            <div class="card-location">
-                                <img src="/assets/icons/location.svg" alt="" class="location-icon" />
-                                <span>${item.city_title}</span>
-                            </div>
-                            <div class="card-buttons">
-                                <a href='/request-in-house' class="btn-primary">Register Now</a>
-                                <a href="/course/${item.course_slug}" class="btn-secondary">Learn more</a>
-                            </div>
-                        </div>
-                    `;
-                    });
-                })
-                .catch(error => console.error('Error fetching related timings:', error));
-        });
-    </script> --}}
-@endsection

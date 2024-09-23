@@ -20,10 +20,10 @@ class BlogController extends Controller
      */
     function __construct()
     {
-        $this->middleware('permission:blog-list|blog-create|blog-edit|blog-hide', ['only' => ['index', 'show']]);
-        $this->middleware('permission:blog-create', ['only' => ['store']]);
-        $this->middleware('permission:blog-edit', ['only' => ['update', 'updateSEO']]);
-        $this->middleware('permission:blog-hide', ['only' => ['bulkHide']]);
+        // $this->middleware('permission:blog-list|blog-create|blog-edit|blog-hide', ['only' => ['index', 'show']]);
+        // $this->middleware('permission:blog-create', ['only' => ['store']]);
+        // $this->middleware('permission:blog-edit', ['only' => ['update', 'updateSEO']]);
+        // $this->middleware('permission:blog-hide', ['only' => ['bulkHide']]);
     }
 
     // Show Blogs page english & arabic

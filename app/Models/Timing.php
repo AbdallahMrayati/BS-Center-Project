@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
+
 
 class Timing extends Model
 {
@@ -39,8 +41,10 @@ class Timing extends Model
                 if ($timing->course->getFirstMediaUrl('images')) {
                     $image = $timing->course->getFirstMediaUrl('images');
                 } else {
-                    // $image = $timing->course->category->getFirstMediaUrl('images');
-                    $image = null;
+     $randomImage = Cache::rememberForever('random_image', function () use ($timing) {
+                    return $timing->course->category->media->random(); // Cache the random image object
+                });
+                    $image = $randomImage->original_url;
                 }
                 return [
                     'id' => $timing->id,
@@ -70,8 +74,10 @@ class Timing extends Model
                 if ($timing->course->getFirstMediaUrl('images')) {
                     $image = $timing->course->getFirstMediaUrl('images');
                 } else {
-                    // $image = $timing->course->category->getFirstMediaUrl('images');
-                    $image = null;
+     $randomImage = Cache::rememberForever('random_image_banner', function () use ($timing) {
+                    return $timing->course->category->media->random(); // Cache the random image object
+                });
+                    $image = $randomImage->original_url;
                 }
                 return [
                     'id' => $timing->id,

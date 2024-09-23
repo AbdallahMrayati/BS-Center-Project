@@ -13,7 +13,7 @@ return [
 
     "category" => "category",
     "Course" => "Course",
-    "Courses" => "Courses",
+        "Courses" => "Courses",
     "Venue" => "Venue",
     "Month" => "Month",
     "Duration" => "Duration",

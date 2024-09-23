@@ -19,8 +19,9 @@ class HomeController extends Controller
     {
         $this->courseService = $courseService;
     }
-
-    public function searchResults(Request $request)
+    
+    
+      public function searchResults(Request $request)
     {
         $currentLocale = app()->getLocale(); // Get the current language
 
@@ -47,7 +48,6 @@ class HomeController extends Controller
         return view('screen.searchResult', compact('timings'));
     }
 
-
     public function index(Request $request)
     {
         $currentLocale = app()->getLocale(); // Get the current language
@@ -55,7 +55,7 @@ class HomeController extends Controller
 
         $query = Timing::where('lang', $currentLocale);
         $upcomingCourses = Timing::getUpcoming($query);
-
+        
 
         // Start with the Timing model and apply filters
         $query = Timing::where('lang', $currentLocale)->where('hidden', false);
@@ -106,6 +106,7 @@ class HomeController extends Controller
             return $category;
         });
 
+// return $categories;
         return view('screen.home', compact('upcomingCourses', 'timings', 'bannerCourses', 'cities', 'categories', 'durations'));
     }
 

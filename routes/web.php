@@ -26,6 +26,7 @@ Route::group(
         Route::get('/', [HomeController::class, 'index'])->name('home.index');
         Route::get('/search-results', [HomeController::class, 'searchResults'])->name('search.results');
 
+        
         Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
         Route::get('/venus', [CityController::class, 'index'])->name('cities.index');
         Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
@@ -37,10 +38,12 @@ Route::group(
 
         // Other Screens
         Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
-        Route::get('/course/{slug}', [CourseController::class, 'show'])->name('course.show');
+        Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('course.show');
         Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('courses.index');
+        
         Route::get('/{venueslug}/{categoryslug}', [CategoryController::class, 'showCoursesViaCity'])->name('showCoursesViaCity.index');
 
+        
         Route::get('/privacy-policy', function () {
             return view('screen.privacyPolicy');
         })->name('privacy-policy');

@@ -9,14 +9,14 @@
         <div class="about-header container">
             <ul>
                 <li><a href="{{ route('blogs.index') }}">Blogs</a></li>
-                <img src="{{ asset('assets/icons/arrow.svg') }}" />
+                <img src="/assets/icons/arrow.svg" />
                 <li>{{ $blog->slug }}</li>
             </ul>
         </div>
     </div>
 
     <section class="hero-single-blog">
-        <img src="{{ asset('assets/imgs/bg-blog.webp') }}" alt="{{ $blog->image_alt }}" />
+        <img src="{{ asset($blog->image) }}" alt="{{ $blog->image_alt }}" />
     </section>
 
     <section class="blog-details">
@@ -30,9 +30,7 @@
                     <span>{{ $blog->created_at }}</span>
                 </div>
             </div>
-            <p>
-                {{ $blog->description }}
-            </p>
+               {!! $blog->description !!}
         </div>
     </section>
 
@@ -43,29 +41,31 @@
         </div>
         <div class="card-container-blog container">
             @foreach ($blogsByTag as $item)
-                <div class="card-blogs">
-                    <img src="/assets/imgs/card-blog.png" alt="{{ $item['title'] }}" class="card-blog-img" />
-                    <div class="card-blog-content">
-                        <h3>
-                            {{ $item['title'] }}
-                        </h3>
-                        <div class="card-blog-desc">
-                            @if (strlen($item->description) > 125)
-                                <p>{{ Str::limit($item->description, 125, '...') }}</p>
-                                <a href="{{ route('blog.show', $item->slug) }}">more</a>
-                            @else
-                                <p>{{ $item->description }}</p>
-                            @endif
-                        </div>
-                        <div class="card-blog-footer">
-                            <button><a href="{{ route('blog.show', $item->slug) }}">Read more</a></button>
-                            <div class="card-blog-views">
-                                <img src="../assets/icons/view.svg" alt="" />
-                                <span>{{ $item['number_of_views'] }}</span>
-                            </div>
+         <a href="{{ route('blog.show', $item->slug) }}">
+            <div class="card-blogs">
+                <img src="{{ asset($item->image_url) }}" alt="{{ $item['title'] }}" class="card-blog-img" />
+                <div class="card-blog-content">
+                    <h3>
+                        {{ $item['title'] }}
+                    </h3>
+                    <div class="card-blog-desc">
+                        @if (strlen($item->description) > 125)
+                             {!! Str::limit($item->description, 125, '...') !!}
+                            <a href="{{ route('blog.show', $item->slug) }}">more</a>
+                        @else
+                            {!! $item->description !!}
+                        @endif
+                    </div>
+                    <div class="card-blog-footer">
+                        <button><a href="{{ route('blog.show', $item->slug) }}">Read more</a></button>
+                        <div class="card-blog-views">
+                            <img src="../assets/icons/view.svg" alt="" />
+                            <span>{{ $item['number_of_views'] }}</span>
                         </div>
                     </div>
                 </div>
+            </div>
+            </a>
             @endforeach
         </div>
     </section>

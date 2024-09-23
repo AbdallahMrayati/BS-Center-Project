@@ -4,40 +4,32 @@
     {{ config('app.name', 'BSC') }}
 @endsection
 
-{{-- <style>
-    /* Remove link default styles */
+
+
+@section('content')
+
+<style>
     .category-link {
         text-decoration: none;
-        /* Remove underline */
         color: inherit;
-        /* Keep original text color */
-        display: block;
-        /* Make the entire link clickable */
     }
-
-    /* Ensure the hover or focus doesn't affect color */
     .category-link:hover,
     .category-link:focus {
         color: inherit;
-        outline: none;
+        /*tline: none;*/
     }
-
-    /* Ensure the slide content inside remains styled */
     .category-card h3,
     .category-card p {
         color: white;
-        /* Keep your desired color */
     }
-</style> --}}
-
-@section('content')
+</style>
     {{-- Banner courses --}}
     @include('includes.isbanner')
 
     {{-- Search --}}
     <section class="search-section home-search-section">
         <div class="container">
-            <h2>{{ __('content.Search For Your Course') }}</h2>
+             <h2>{{ __('content.Search For Your Course') }}</h2>
             <div class="home-search">
                 @include('includes.search-form', ['searchRoute' => route('search.results')])
             </div>
@@ -51,7 +43,7 @@
     {{-- Upcoming courses --}}
     <section class="search-courses home-courses">
         <div class="container">
-            <h2>{{ __('content.Upcoming Courses') }}</h2>
+              <h2>{{ __('content.Upcoming Courses') }}</h2>
             <div class="card-container">
                 @foreach ($upcomingCourses as $item)
                     <a href="{{ route('course.show', $item['course_slug']) }}" class="card-link">
@@ -59,7 +51,7 @@
                             <img src="{{ $item['course_image'] }}" alt="">
                             <div class="card-content">
                                 <div class="card-title">{{ $item['course_title'] }}</div>
-                                <div class="card-dates">
+                                                               <div class="card-dates">
                                     <img src="/assets/icons/calender2.svg" alt="" />
                                     <span>
                                         {{ __('content.From') }}
@@ -90,6 +82,7 @@
         </div>
     </section>
 
+    {{-- About us --}}
     {{-- About us --}}
     <section class="search-courses about-us">
         <div class="container">
@@ -138,7 +131,7 @@
     <section class="search-courses categories-home categories">
         <div class="container">
             <div class="section-title">
-                <h2>{{ __('content.Categories') }}</h2>
+                  <h2>{{ __('content.Categories') }}</h2>
                 <div class="arrows">
                     <div class="swiper-button-prev arrow-btn"></div>
                     <div class="swiper-button-next arrow-btn"></div>
@@ -148,13 +141,13 @@
         <div class="swiper mySwiper2">
             <div class="swiper-wrapper wrap">
                 @foreach ($categories as $item)
-                    <a href="{{ route('courses.index', $item->slug) }}">
+                    <a style="z-index : 6"href="{{ route('courses.index', $item->slug) }}">
                         <div class="swiper-slide">
                             <div class="category-card mx-5 ">
                                 <img src="{{ $item['image_url'] }}" alt="{{ $item['image_alt'] }}">
                                 <div class="card-overlay">
-                                    <h3 style="color:white">{{ $item['title'] }}</h3>
-                                    <p style="color:white">{{ $item['description'] }}</p>
+                                    <h3>{{ $item['title'] }}</h3>
+                                    {!! $item['description'] !!}
                                     <span class="line-card"></span>
                                     <a href="{{ route('courses.index', $item->slug) }}" class="category-card-arrow">
                                         <img src="./assets/icons/arrow.svg" alt="">
@@ -198,13 +191,13 @@
     {{-- Our Services --}}
     <section class="search-courses services">
         <div class="container">
-            <h2>{{ __('content.Our Services') }}</h2>
+             <h2>{{ __('content.Our Services') }}</h2>
             <div class="service-cards">
                 <div class="service-card">
                     <div class="service-svg">
                         <img src="{{ asset('assets/icons/serv-icon1.svg') }}" alt="">
                     </div>
-                    <h5>{{ __('content.Public') }}</h5>
+                     <h5>{{ __('content.Public') }}</h5>
                     <p><span>Lorem ipsum dolor sit amet, </span>consectetur adipiscing elit, sed do eiusmod tempor Lorem
                         ipsum dolor sit amet, consectetur adipiscing </p>
                 </div>
@@ -233,7 +226,7 @@
             <h2>FAQ</h2>
         </div>
         <div class="faqs-container">
-            <h4>{{ __('content.frequently asked question') }}</h4>
+               <h4>{{ __('content.frequently asked question') }}</h4>
             <div class="faq-container"></div>
         </div>
     </section>
@@ -241,7 +234,7 @@
     {{-- Trusted by  --}}
     <section class="search-courses trusted">
         <div class="container">
-            <h2>{{ __('content.Trusted By') }}</h2>
+               <h2>{{ __('content.Trusted By') }}</h2>
         </div>
         <div class="swiper mySwiper-about">
             <div class="swiper-wrapper wrap2">
